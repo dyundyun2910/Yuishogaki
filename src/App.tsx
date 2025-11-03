@@ -1,34 +1,75 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { TempleProvider, useTempleContext } from './contexts/TempleContext'
+import { MapView } from './components/Map/MapView'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+function AppContent() {
+  const { temples, loading, error, selectedTemple, setSelectedTemple } =
+    useTempleContext()
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
+        <p>読み込み中...</p>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+          flexDirection: 'column',
+        }}
+      >
+        <h2>エラーが発生しました</h2>
+        <p>{error}</p>
+      </div>
+    )
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+    <div style={{ height: '100vh', width: '100vw', display: 'flex', flexDirection: 'column' }}>
+      <header
+        style={{
+          backgroundColor: '#D32F2F',
+          color: 'white',
+          padding: '16px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        }}
+      >
+        <h1 style={{ margin: 0, fontSize: '24px' }}>京都寺社仏閣 由緒書きマップ</h1>
+        <p style={{ margin: '4px 0 0 0', fontSize: '14px' }}>
+          {temples.length}件の寺社を表示中
+          {selectedTemple && ` - ${selectedTemple.name}を選択中`}
         </p>
+      </header>
+      <div style={{ flex: 1, position: 'relative' }}>
+        <MapView
+          temples={temples}
+          onTempleClick={setSelectedTemple}
+          selectedTemple={selectedTemple}
+        />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
+  )
+}
+
+function App() {
+  return (
+    <TempleProvider>
+      <AppContent />
+    </TempleProvider>
   )
 }
 
