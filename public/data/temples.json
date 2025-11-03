@@ -1,0 +1,84 @@
+{
+  "temples": [
+    {
+      "id": "kinkakuji",
+      "name": "金閣寺（鹿苑寺）",
+      "nameKana": "きんかくじ（ろくおんじ）",
+      "category": "temple",
+      "location": {
+        "lat": 35.0394,
+        "lng": 135.7292,
+        "address": "京都府京都市北区金閣寺町1"
+      },
+      "description": "正式名称は鹿苑寺。足利義満が1397年に建立した別荘を、その死後禅寺としたもの。金箔を貼った舎利殿「金閣」が特に有名で、世界文化遺産に登録されている。庭園は特別名勝・特別史跡に指定されており、日本を代表する名園として知られる。",
+      "images": ["data/images/kinkakuji_01.jpg"],
+      "visitDate": "2024-03-15",
+      "tags": ["世界遺産", "金閣", "足利義満", "特別名勝"],
+      "website": "https://www.shokoku-ji.jp/kinkakuji/"
+    },
+    {
+      "id": "ginkakuji",
+      "name": "銀閣寺（慈照寺）",
+      "nameKana": "ぎんかくじ（じしょうじ）",
+      "category": "temple",
+      "location": {
+        "lat": 35.0269,
+        "lng": 135.7983,
+        "address": "京都府京都市左京区銀閣寺町2"
+      },
+      "description": "正式名称は慈照寺。足利義政が1490年に建立した山荘を、その死後禅寺としたもの。銀閣と呼ばれる観音殿は、東山文化を代表する建築物で、世界文化遺産に登録されている。庭園は特別名勝・特別史跡に指定されており、わび・さびの美意識を体現している。",
+      "images": ["data/images/ginkakuji_01.jpg"],
+      "visitDate": "2024-03-20",
+      "tags": ["世界遺産", "銀閣", "足利義政", "東山文化"],
+      "website": "https://www.shokoku-ji.jp/ginkakuji/"
+    },
+    {
+      "id": "kiyomizudera",
+      "name": "清水寺",
+      "nameKana": "きよみずでら",
+      "category": "temple",
+      "location": {
+        "lat": 34.9949,
+        "lng": 135.785,
+        "address": "京都府京都市東山区清水1丁目294"
+      },
+      "description": "778年に創建された、京都を代表する寺院。「清水の舞台」として知られる本堂は、崖に張り出した懸造り（舞台造り）の構造で有名。世界文化遺産に登録されており、年間を通じて多くの参拝者が訪れる。音羽の滝の清水は古くから「黄金水」「延命水」として信仰されている。",
+      "images": ["data/images/kiyomizudera_01.jpg"],
+      "visitDate": "2024-04-05",
+      "tags": ["世界遺産", "清水の舞台", "音羽の滝"],
+      "website": "https://www.kiyomizudera.or.jp/"
+    },
+    {
+      "id": "fushimiinari",
+      "name": "伏見稲荷大社",
+      "nameKana": "ふしみいなりたいしゃ",
+      "category": "shrine",
+      "location": {
+        "lat": 34.9671,
+        "lng": 135.7727,
+        "address": "京都府京都市伏見区深草藪之内町68"
+      },
+      "description": "全国に約3万社ある稲荷神社の総本宮。711年に創建され、商売繁盛・五穀豊穣の神様として信仰を集めている。千本鳥居で有名で、朱色の鳥居が稲荷山全体に約1万基建ち並ぶ。外国人観光客にも人気が高く、京都を代表する観光スポットの一つ。",
+      "images": ["data/images/fushimiinari_01.jpg"],
+      "visitDate": "2024-04-10",
+      "tags": ["千本鳥居", "稲荷神社", "商売繁盛"],
+      "website": "http://inari.jp/"
+    },
+    {
+      "id": "ryoanji",
+      "name": "龍安寺",
+      "nameKana": "りょうあんじ",
+      "category": "temple",
+      "location": {
+        "lat": 35.0345,
+        "lng": 135.7183,
+        "address": "京都府京都市右京区龍安寺御陵ノ下町13"
+      },
+      "description": "1450年に創建された臨済宗の寺院。石庭（方丈庭園）で世界的に有名で、枯山水庭園の最高傑作とされる。幅25m、奥行10mの空間に15個の石が配置され、どの角度から見ても必ず1つの石が他の石に隠れて見えないという不思議な構造。世界文化遺産に登録されている。",
+      "images": ["data/images/ryoanji_01.jpg"],
+      "visitDate": "2024-04-15",
+      "tags": ["世界遺産", "石庭", "枯山水"],
+      "website": "http://www.ryoanji.jp/"
+    }
+  ]
+}

@@ -9,6 +9,11 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
+    environmentOptions: {
+      jsdom: {
+        resources: 'usable',
+      },
+    },
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
@@ -23,4 +28,7 @@ export default defineConfig({
     },
   },
   base: '/Yuishogaki/',
+  define: {
+    'process.env.NODE_ENV': JSON.stringify('test'),
+  },
 })
