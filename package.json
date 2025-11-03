@@ -11,7 +11,9 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "generate:temples": "node scripts/generateTemplesJson.js",
+    "merge:temples": "node scripts/mergeTemplesJson.js"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
