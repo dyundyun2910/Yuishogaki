@@ -23,10 +23,10 @@
 - **フレームワーク**: React 18.x
 - **言語**: TypeScript 5.x
 - **ビルドツール**: Vite 5.x
-- **UI フレームワーク**: Material-UI (MUI) v5
 - **地図ライブラリ**: React-Leaflet + Leaflet
-- **検索ライブラリ**: Fuse.js（軽量な全文検索）
+- **検索ライブラリ**: Fuse.js（軽量な全文検索）※未実装
 - **状態管理**: React Context API (小規模のため)
+- **テスト**: Vitest + React Testing Library
 
 ### 2.2 ホスティング
 - **プラットフォーム**: GitHub Pages
@@ -271,7 +271,30 @@ const fuseOptions = {
 
 ## 6. データ管理フロー
 
-### 6.1 新規データ追加フロー
+### 6.1 新規データ追加フロー（自動生成 - 推奨）
+1. 写真を `public/data/images/` に配置
+2. EXIF情報から位置情報を抽出
+   ```bash
+   npm run generate:temples
+   ```
+   - GPS座標（緯度・経度）の取得
+   - 撮影日時の取得
+   - 近い位置の画像を自動グループ化
+3. Gemini AIで画像から寺社情報を取得
+   - 寺社名、ふりがな
+   - カテゴリ（寺/神社）
+   - 由緒書きの内容（OCR + 要約）
+   - タグ、公式サイト
+4. 2つのJSONをマージ
+   ```bash
+   npm run merge:temples
+   ```
+   - EXIF位置情報 + Gemini寺社情報
+   - 画像ファイル名で自動マッチング
+5. Gitコミット・プッシュ
+6. GitHub Actionsで自動デプロイ
+
+### 6.2 新規データ追加フロー（手動）
 1. 写真をリサイズ・最適化（推奨: 1200px幅）
 2. `public/data/images/` に画像を配置
 3. OCRツール等で由緒書きをテキスト化
@@ -279,9 +302,10 @@ const fuseOptions = {
 5. Gitコミット・プッシュ
 6. GitHub Actionsで自動デプロイ
 
-### 6.2 データ編集
+### 6.3 データ編集
 - JSONファイルを直接編集
 - VSCodeの JSON Schema検証を活用
+- または生成スクリプトを再実行
 
 ---
 
@@ -341,13 +365,13 @@ src/
 
 ### 7.2 開発フェーズ
 
-#### Phase 1: 環境構築とテスト基盤（Week 1）
-- [ ] Vite + React + TypeScript プロジェクト作成
-- [ ] Vitest + React Testing Library セットアップ
-- [ ] ESLint + Prettier 設定
-- [ ] 基本的なディレクトリ構造構築
-- [ ] サンプルテスト作成（動作確認）
-- [ ] サンプルデータ（3-5件）の作成
+### Phase 1: 環境構築とテスト基盤（Week 1） ✅ 完了
+- [x] Vite + React + TypeScript プロジェクト作成
+- [x] Vitest + React Testing Library セットアップ
+- [x] ESLint + Prettier 設定
+- [x] 基本的なディレクトリ構造構築
+- [x] サンプルテスト作成（動作確認）
+- [x] サンプルデータ（3-5件）の作成
 
 **TDD実践:**
 ```
@@ -355,14 +379,15 @@ src/
 2. 実装: Temple型の定義
 3. リファクタ: 型の整理
 ```
+**成果:** 全4テスト成功
 
-#### Phase 2: データ管理機能（Week 2）
-- [ ] Temple型定義のテスト作成
-- [ ] Temple型の実装
-- [ ] データ読み込みフック（useTemples）のテスト作成
-- [ ] useTemplesの実装
-- [ ] TempleContextのテスト作成
-- [ ] TempleContextの実装
+#### Phase 2: データ管理機能（Week 2） ✅ 完了
+- [x] Temple型定義のテスト作成
+- [x] Temple型の実装
+- [x] データ読み込みフック（useTemples）のテスト作成
+- [x] useTemplesの実装
+- [x] TempleContextのテスト作成
+- [x] TempleContextの実装
 
 **TDD実践:**
 ```
@@ -370,14 +395,16 @@ src/
 2. 実装: データ読み込み処理
 3. リファクタ: エラーハンドリング追加
 ```
+**成果:** useTemples 8テスト成功、TempleContext 4テスト成功
 
-#### Phase 3: 地図表示機能（Week 3）
-- [ ] MapViewコンポーネントのテスト作成
-- [ ] MapView基本実装
-- [ ] MapMarkerコンポーネントのテスト作成
-- [ ] MapMarker実装
-- [ ] マーカークリックイベントのテスト
-- [ ] イベントハンドラ実装
+#### Phase 3: 地図表示機能（Week 3） ✅ 完了
+- [x] MapViewコンポーネントのテスト作成
+- [x] MapView基本実装
+- [x] MapMarkerコンポーネントのテスト作成
+- [x] MapMarker実装
+- [x] マーカークリックイベントのテスト
+- [x] イベントハンドラ実装
+- [x] App.tsxとの統合
 
 **TDD実践:**
 ```
@@ -385,8 +412,21 @@ src/
 2. 実装: Leafletマーカー描画
 3. リファクタ: カスタムアイコン対応
 ```
+**成果:** MapView 9テスト成功、実際のアプリケーションとして動作
 
-#### Phase 4: 詳細表示機能（Week 4）
+#### Phase 4: データ生成ツール（Week 4） ✅ 完了
+- [x] EXIF情報抽出スクリプト作成
+- [x] 画像から位置情報を取得
+- [x] 位置情報でグループ化
+- [x] Gemini AI連携用マージスクリプト作成
+- [x] npm scriptsへの統合
+
+**成果:** 
+- `npm run generate:temples` - EXIF情報からJSONを自動生成
+- `npm run merge:temples` - Gemini AIのデータとマージ
+- 112枚の画像ファイルを管理可能に
+
+#### Phase 5: 詳細表示機能（Week 5） 🚧 次のステップ
 - [ ] TempleDetailコンポーネントのテスト作成
 - [ ] TempleDetail実装
 - [ ] モーダル開閉のテスト
@@ -400,7 +440,7 @@ src/
 3. リファクタ: 画像スライダー追加
 ```
 
-#### Phase 5: 検索機能（Week 5）
+#### Phase 6: 検索機能（Week 6） 📋 予定
 - [ ] searchEngine（Fuse.js統合）のテスト作成
 - [ ] searchEngine実装
 - [ ] useSearchフックのテスト作成
@@ -417,7 +457,7 @@ src/
 3. リファクタ: あいまい検索の精度調整
 ```
 
-#### Phase 6: リスト表示とフィルター（Week 6）
+#### Phase 7: リスト表示とフィルター（Week 7） 📋 予定
 - [ ] TempleListコンポーネントのテスト作成
 - [ ] TempleList実装
 - [ ] ソート機能のテスト
@@ -432,7 +472,7 @@ src/
 3. リファクタ: 複数条件ソート対応
 ```
 
-#### Phase 7: デプロイとCI/CD（Week 7）
+#### Phase 8: デプロイとCI/CD（Week 8） 📋 予定
 - [ ] GitHub Pages設定
 - [ ] GitHub Actions CI/CD構築
 - [ ] テスト自動実行設定
@@ -440,7 +480,7 @@ src/
 - [ ] 実データ投入
 - [ ] E2Eテスト（オプション）
 
-#### Phase 8: 改善と拡張（継続）
+#### Phase 9: 改善と拡張（継続） 📋 予定
 - [ ] パフォーマンス最適化
 - [ ] PWA化（オフライン対応）
 - [ ] データ編集UI（将来的に）
@@ -730,13 +770,23 @@ jobs:
 ### 技術ドキュメント
 - [React公式ドキュメント](https://react.dev/)
 - [Leaflet Documentation](https://leafletjs.com/)
+- [React-Leaflet Documentation](https://react-leaflet.js.org/)
 - [Fuse.js Documentation](https://fusejs.io/)
+- [Vitest Documentation](https://vitest.dev/)
 - [GitHub Pages ドキュメント](https://docs.github.com/pages)
 
 ### データソース候補
 - OpenStreetMap（位置情報）
 - 京都観光オフィシャルサイト
 - 各寺社の公式サイト
+- Gemini AI（画像認識・OCR）
+
+### 使用ツール
+- **画像処理**: exif-parser（EXIF情報抽出）
+- **OCR**: Gemini AI（由緒書きテキスト化）
+- **地図**: Leaflet + OpenStreetMap
+- **検索**: Fuse.js（軽量全文検索）
+- **テスト**: Vitest + React Testing Library
 
 ---
 
@@ -795,5 +845,8 @@ VITE_BASE_URL=/Yuishogaki/
 
 | 日付 | バージョン | 変更内容 | 作成者 |
 |------|-----------|---------|--------|
-| 2024-XX-XX | 1.0 | 初版作成 | - |
+| 2024-11-03 | 1.3 | Phase 4完了、データ生成ツール追加 | GitHub Copilot CLI |
+| 2024-11-03 | 1.2 | Phase 3完了、地図表示機能実装 | GitHub Copilot CLI |
+| 2024-11-03 | 1.1 | Phase 2完了、データ管理機能実装 | GitHub Copilot CLI |
+| 2024-11-03 | 1.0 | 初版作成 | GitHub Copilot CLI |
 
