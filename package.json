@@ -13,7 +13,9 @@
     "test:coverage": "vitest --coverage",
     "type-check": "tsc --noEmit",
     "generate:temples": "node scripts/generateTemplesJson.js",
-    "merge:temples": "node scripts/mergeTemplesJson.js"
+    "merge:temples": "node scripts/mergeTemplesJson.js",
+    "fix:paths": "node scripts/fixImagePaths.js",
+    "check:images": "node scripts/checkImages.js"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
