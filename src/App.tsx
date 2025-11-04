@@ -1,5 +1,6 @@
 import { TempleProvider, useTempleContext } from './contexts/TempleContext'
 import { MapView } from './components/Map/MapView'
+import { TempleDetail } from './components/Temple/TempleDetail'
 import './App.css'
 
 function AppContent() {
@@ -61,6 +62,12 @@ function AppContent() {
           selectedTemple={selectedTemple}
         />
       </div>
+      {selectedTemple && (
+        <TempleDetail
+          temple={selectedTemple}
+          onClose={() => setSelectedTemple(null)}
+        />
+      )}
     </div>
   )
 }
