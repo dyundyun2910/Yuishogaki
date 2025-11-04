@@ -10,16 +10,6 @@ interface TempleDetailProps {
 export function TempleDetail({ temple, onClose }: TempleDetailProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
-  // 画像パスを正規化（Viteのbaseパスを考慮）
-  const normalizeImagePath = (path: string) => {
-    // 既に絶対パスの場合はそのまま
-    if (path.startsWith('http') || path.startsWith('/')) {
-      return path
-    }
-    // 相対パスの場合は "/" を先頭に追加
-    return `/${path}`
-  }
-
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose()
@@ -54,7 +44,7 @@ export function TempleDetail({ temple, onClose }: TempleDetailProps) {
           {/* 画像セクション */}
           <div className="temple-detail-images">
             <img
-              src={normalizeImagePath(temple.images[currentImageIndex])}
+              src={temple.images[currentImageIndex]}
               alt={`${temple.name} - 画像 ${currentImageIndex + 1}`}
               className="temple-detail-image"
             />
