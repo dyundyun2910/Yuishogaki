@@ -18,6 +18,7 @@
     "check:images": "node scripts/checkImages.js"
   },
   "dependencies": {
+    "fuse.js": "^7.1.0",
     "leaflet": "^1.9.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

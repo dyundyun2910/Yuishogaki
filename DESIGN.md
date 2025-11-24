@@ -441,15 +441,16 @@ src/
 ```
 **成果:** TempleDetail 23テスト成功、画像スライダー機能付きモーダル実装完了
 
-#### Phase 6: 検索機能（Week 6） 📋 予定
-- [ ] searchEngine（Fuse.js統合）のテスト作成
-- [ ] searchEngine実装
-- [ ] useSearchフックのテスト作成
-- [ ] useSearch実装
-- [ ] SearchBarコンポーネントのテスト作成
-- [ ] SearchBar実装
-- [ ] 検索結果表示のテスト
-- [ ] 検索結果UI実装
+#### Phase 6: 検索機能（Week 6） ✅ 完了
+- [x] searchEngine（Fuse.js統合）のテスト作成
+- [x] searchEngine実装
+- [x] useSearchフックのテスト作成
+- [x] useSearch実装
+- [x] SearchBarコンポーネントのテスト作成
+- [x] SearchBar実装
+- [x] 検索結果表示のテスト作成
+- [x] 検索結果UI実装
+- [x] App.tsxへの検索機能統合
 
 **TDD実践:**
 ```
@@ -457,6 +458,16 @@ src/
 2. 実装: Fuse.js統合
 3. リファクタ: あいまい検索の精度調整
 ```
+**成果:**
+- searchEngine 15テスト成功
+- useSearch 15テスト成功
+- SearchBar 14テスト成功
+- SearchResults 13テスト成功
+- 全文検索機能（寺社名、ふりがな、説明文、タグ、住所）実装完了
+- あいまい検索対応
+- ヘッダー部分に検索バー配置
+- 検索結果をサイドパネルに表示
+- 検索結果からマーカー選択可能
 
 #### Phase 7: リスト表示とフィルター（Week 7） 📋 予定
 - [ ] TempleListコンポーネントのテスト作成
@@ -846,6 +857,8 @@ VITE_BASE_URL=/Yuishogaki/
 
 | 日付 | バージョン | 変更内容 | 作成者 |
 |------|-----------|---------|--------|
+| 2024-11-24 | 1.5 | Phase 6完了、検索機能実装（全105テスト成功） | Claude Code |
+| 2024-11-04 | 1.4 | Phase 5完了、詳細表示機能実装 | GitHub Copilot CLI |
 | 2024-11-03 | 1.3 | Phase 4完了、データ生成ツール追加 | GitHub Copilot CLI |
 | 2024-11-03 | 1.2 | Phase 3完了、地図表示機能実装 | GitHub Copilot CLI |
 | 2024-11-03 | 1.1 | Phase 2完了、データ管理機能実装 | GitHub Copilot CLI |
