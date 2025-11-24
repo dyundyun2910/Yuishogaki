@@ -62,7 +62,7 @@ npm run build
 npm run preview
 
 # デプロイ (GitHub Actionsで自動実行)
-git push origin main
+git push origin master
 ```
 
 ## 📂 プロジェクト構成
@@ -88,6 +88,8 @@ Yuishogaki/
 ### 方法1: 画像から自動生成（推奨）
 
 1. 由緒書きの写真を `public/data/images/` に配置
+   - **注意**: HEIC形式の画像は事前にJPG形式に変換してください
+   - iPhone等で撮影した画像はHEIC形式の場合があるため、変換ツール等を使用してJPGに変換する必要があります
 2. 必要なパッケージをインストール:
    ```bash
    npm install exif-parser --save-dev
