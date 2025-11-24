@@ -1,4 +1,4 @@
-import { renderHook, waitFor, act } from '@testing-library/react';
+import { renderHook, act } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import { useSearch } from './useSearch';
 import type { Temple } from '../types/temple';
