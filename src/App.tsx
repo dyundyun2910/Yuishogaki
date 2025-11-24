@@ -75,14 +75,15 @@ function AppContent() {
         </p>
         <SearchBar query={query} onQueryChange={setQuery} />
       </header>
-      <div style={{ flex: 1, position: 'relative', display: 'flex' }}>
+      <div style={{ flex: 1, position: 'relative', display: 'flex', overflow: 'hidden' }}>
         {query && results.length > 0 && (
           <div
             style={{
               width: '350px',
               maxWidth: '40%',
               height: '100%',
-              overflow: 'auto',
+              overflowY: 'auto',
+              overflowX: 'hidden',
               backgroundColor: 'white',
               boxShadow: '2px 0 4px rgba(0,0,0,0.1)',
               zIndex: 1000,
