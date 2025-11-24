@@ -4,6 +4,7 @@ import { TempleDetail } from './components/Temple/TempleDetail'
 import { SearchBar } from './components/Search/SearchBar'
 import { SearchResults } from './components/Search/SearchResults'
 import { useSearch } from './hooks/useSearch'
+import type { Temple } from './types/temple'
 import './App.css'
 
 function AppContent() {
@@ -12,6 +13,18 @@ function AppContent() {
 
   // 検索機能を使用
   const { query, results, setQuery } = useSearch(temples)
+
+  // MAPのピンをクリックしたときのハンドラー（検索をクリア）
+  const handleMapPinClick = (temple: Temple) => {
+    setSelectedTemple(temple)
+    setQuery('') // 検索をクリアして検索パネルを閉じる
+  }
+
+  // 検索結果から選択したときのハンドラー（検索はクリアしない）
+  const handleSearchResultClick = (temple: Temple) => {
+    setSelectedTemple(temple)
+    // 検索結果は残したままにする
+  }
 
   if (loading) {
     return (
@@ -75,13 +88,13 @@ function AppContent() {
               zIndex: 1000,
             }}
           >
-            <SearchResults results={results} onTempleClick={setSelectedTemple} />
+            <SearchResults results={results} onTempleClick={handleSearchResultClick} />
           </div>
         )}
         <div style={{ flex: 1, position: 'relative' }}>
           <MapView
             temples={temples}
-            onTempleClick={setSelectedTemple}
+            onTempleClick={handleMapPinClick}
             selectedTemple={selectedTemple}
           />
         </div>
